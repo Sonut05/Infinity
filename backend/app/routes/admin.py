@@ -1,3 +1,4 @@
+import os
 import time
 import secrets
 import hmac
@@ -168,17 +169,17 @@ def admin_login():
         )
 
     data = request.get_json() or {}
-    email = (data.get("email") or "").strip().lower()
+    identifier = (data.get("email") or "").strip().lower()
     password = data.get("password") or ""
 
-    if not email or not password:
+    if not identifier or not password:
         return (
             jsonify({"error": "Invalid email or password."}),
             401,
         )
 
-    # Check email rate limit as well
-    if is_rate_limited(email):
+    # Check identifier rate limit as well
+    if is_rate_limited(identifier):
         return (
             jsonify(
                 {
@@ -188,11 +189,37 @@ def admin_login():
             429,
         )
 
-    admin = AdminUser.query.filter_by(email=email).first()
+    # If database has no admin users yet, provision default admin automatically
+    try:
+        if AdminUser.query.count() == 0:
+            init_admin = AdminUser(
+                username="admin",
+                email="admin@infinityspacegroup.in",
+                is_active=True,
+            )
+            init_pass = os.getenv("ADMIN_INIT_PASSWORD", "AdminSecure2026!")
+            init_admin.set_password(init_pass)
+            db.session.add(init_admin)
+            db.session.commit()
+    except Exception:
+        db.session.rollback()
+
+    admin = AdminUser.query.filter(
+        or_(AdminUser.email == identifier, AdminUser.username == identifier)
+    ).first()
+
+    # Optional environment override to reset admin password if configured
+    reset_pass = os.getenv("ADMIN_RESET_PASSWORD")
+    if reset_pass and admin and identifier in ("admin", "admin@infinityspacegroup.in"):
+        try:
+            admin.set_password(reset_pass)
+            db.session.commit()
+        except Exception:
+            db.session.rollback()
 
     if not admin or not admin.is_active or not admin.check_password(password):
         record_failed_attempt(client_ip)
-        record_failed_attempt(email)
+        record_failed_attempt(identifier)
         return (
             jsonify({"error": "Invalid email or password."}),
             401,
@@ -200,7 +227,7 @@ def admin_login():
 
     # Authentication successful
     clear_failed_attempts(client_ip)
-    clear_failed_attempts(email)
+    clear_failed_attempts(identifier)
 
     session["admin_id"] = admin.id
     session.permanent = True
