@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" fill="none">
+  <defs>
+    <linearGradient id="visGrad" x1="0" y1="0" x2="1600" y2="900" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#07151D"/>
+      <stop offset="50%" stop-color="#063A58"/>
+      <stop offset="100%" stop-color="#0A2434"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#visGrad)"/>
+  
+  <!-- Perspective 3D Wireframe Room Grid -->
+  <!-- Back Wall -->
+  <polygon points="450,220 1150,220 1150,680 450,680" fill="#051C2A" stroke="#1479D1" stroke-width="1.5" stroke-opacity="0.8"/>
+  <!-- Floor Perspective Lines -->
+  <polygon points="450,680 1150,680 1500,900 100,900" fill="#041724" stroke="#1479D1" stroke-width="1.2" stroke-opacity="0.6"/>
+  <line x1="590" y1="680" x2="380" y2="900" stroke="#1479D1" stroke-width="0.8" stroke-dasharray="4 4" stroke-opacity="0.4"/>
+  <line x1="730" y1="680" x2="660" y2="900" stroke="#1479D1" stroke-width="0.8" stroke-dasharray="4 4" stroke-opacity="0.4"/>
+  <line x1="870" y1="680" x2="940" y2="900" stroke="#1479D1" stroke-width="0.8" stroke-dasharray="4 4" stroke-opacity="0.4"/>
+  <line x1="1010" y1="680" x2="1220" y2="900" stroke="#1479D1" stroke-width="0.8" stroke-dasharray="4 4" stroke-opacity="0.4"/>
+
+  <!-- Left Wall Perspective -->
+  <polygon points="100,0 450,220 450,680 100,900" fill="#072233" stroke="#1479D1" stroke-width="1.2" stroke-opacity="0.6"/>
+  <!-- Right Wall Perspective -->
+  <polygon points="1150,220 1500,0 1500,900 1150,680" fill="#061F2E" stroke="#1479D1" stroke-width="1.2" stroke-opacity="0.6"/>
+  <!-- Ceiling Perspective -->
+  <polygon points="100,0 1500,0 1150,220 450,220" fill="#03121C" stroke="#1479D1" stroke-width="1.2" stroke-opacity="0.6"/>
+
+  <!-- Large Picture Window with Ranchi Skyline Silhouette -->
+  <rect x="520" y="270" width="400" height="320" fill="#0C344E" stroke="#F4C542" stroke-width="1"/>
+  <line x1="720" y1="270" x2="720" y2="590" stroke="#F4C542" stroke-width="1" stroke-opacity="0.7"/>
+
+  <!-- 3D Camera Focus Box -->
+  <rect x="740" y="390" width="120" height="120" fill="none" stroke="#F4C542" stroke-width="2"/>
+  <circle cx="800" cy="450" r="8" fill="#F4C542"/>
+  <line x1="800" y1="420" x2="800" y2="480" stroke="#F4C542" stroke-width="1"/>
+  <line x1="770" y1="450" x2="830" y2="450" stroke="#F4C542" stroke-width="1"/>
+
+  <!-- Play / Interactive Center Badge -->
+  <circle cx="800" cy="450" r="54" fill="#063A58" fill-opacity="0.85" stroke="#FFFFFF" stroke-width="2"/>
+  <polygon points="790,430 820,450 790,470" fill="#FFFFFF"/>
+
+  <!-- UI Overlay / HUD -->
+  <text x="80" y="80" font-family="monospace" font-size="14" fill="#1479D1">REC [●] 4K UHD // 60 FPS • 3D BIM WALKTHROUGH</text>
+  <text x="80" y="105" font-family="monospace" font-size="12" fill="#F4C542">INFINITY SPACE GROUP • 3D VISUALIZATION LAB</text>
+  <text x="1520" y="80" font-family="monospace" font-size="12" fill="#94A3B8" text-anchor="end">RENDER ENGINE: PHYSICALLY BASED (PBR)</text>
+  <text x="800" y="820" font-family="sans-serif" font-size="14" fill="#FFFFFF" text-anchor="middle" letter-spacing="3">REAL 3D WALKTHROUGH VIDEO MEDIA WILL BE EMBEDDED</text>
+  <text x="800" y="845" font-family="monospace" font-size="11" fill="#64748B" text-anchor="middle">ASSET: /assets/3d-walkthrough.mp4 (PLACEHOLDER ACTIVE)</text>
+</svg>

@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --brand-navy: #063A58;
+    --brand-dark: #07151D;
+    --brand-blue: #1479D1;
+    --brand-slate: #F1F4F6;
+    --brand-accent: #F4C542;
+  }
+
+  html {
+    color-scheme: light;
+  }
+
+  body {
+    @apply bg-white text-brand-dark overflow-x-hidden font-sans;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Accessibility: Visible focus outline */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-brand-blue ring-offset-2;
+  }
+}
+
+@layer utilities {
+  /* Architectural Blueprint Grid patterns */
+  .bg-grid-pattern {
+    background-size: 48px 48px;
+    background-image: 
+      linear-gradient(to right, rgba(6, 58, 88, 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(6, 58, 88, 0.06) 1px, transparent 1px);
+  }
+
+  .bg-grid-pattern-dark {
+    background-size: 48px 48px;
+    background-image: 
+      linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  }
+
+  .bg-dot-pattern {
+    background-size: 28px 28px;
+    background-image: radial-gradient(rgba(6, 58, 88, 0.12) 1px, transparent 1px);
+  }
+
+  .bg-dot-pattern-dark {
+    background-size: 28px 28px;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+  }
+}
