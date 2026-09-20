@@ -27,7 +27,7 @@ class Config:
     # Session & Cookie Security
     SESSION_COOKIE_NAME = "isg_admin_session"
     SESSION_COOKIE_HTTPONLY = True
-    SESSION_COOKIE_SAMESITE = "Lax"
+    SESSION_COOKIE_SAMESITE = os.getenv("SESSION_COOKIE_SAMESITE", "Lax")
     SESSION_COOKIE_SECURE = (
         os.getenv("SESSION_COOKIE_SECURE", "false").lower() == "true"
     )
@@ -35,7 +35,7 @@ class Config:
 
     # CORS configuration
     FRONTEND_ORIGIN = [
-        origin.strip()
+        origin.strip().rstrip("/")
         for origin in os.getenv("FRONTEND_ORIGIN", "http://localhost:5173").split(",")
         if origin.strip()
     ]
@@ -71,6 +71,8 @@ class ProductionConfig(Config):
     DEBUG = False
     SESSION_COOKIE_SECURE = True
     SECRET_KEY = os.getenv("SECRET_KEY")
+    # Defaults to 'None' for cross-origin Netlify-to-Render requests; set to 'Lax' if sharing same custom domain
+    SESSION_COOKIE_SAMESITE = os.getenv("SESSION_COOKIE_SAMESITE", "None")
 
 
 CONFIG_MAP = {
