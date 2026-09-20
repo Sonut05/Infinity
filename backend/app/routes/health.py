@@ -5,6 +5,24 @@ from ..extensions import db
 health_bp = Blueprint("health", __name__)
 
 
+@health_bp.route("/", methods=["GET"])
+def root_index():
+    """Root index route confirming API availability."""
+    return (
+        jsonify(
+            {
+                "service": "Infinity Space Group API",
+                "status": "online",
+                "endpoints": {
+                    "health": "/api/health",
+                    "ready": "/api/ready",
+                },
+            }
+        ),
+        200,
+    )
+
+
 @health_bp.route("/api/health", methods=["GET"])
 def health_check():
     """Liveness probe confirming Flask is running."""

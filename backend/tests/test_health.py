@@ -1,3 +1,12 @@
+def test_root_endpoint(client):
+    """Verify root endpoint returns API service details."""
+    response = client.get("/")
+    assert response.status_code == 200
+    data = response.get_json()
+    assert data.get("status") == "online"
+    assert "Infinity Space Group" in data.get("service", "")
+
+
 def test_health_endpoint(client):
     """Verify liveness probe returns status ok."""
     response = client.get("/api/health")
